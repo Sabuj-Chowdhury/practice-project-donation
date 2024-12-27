@@ -10,6 +10,8 @@ import AddDonations from "../page/AddDonations";
 import MyDonations from "../page/MyDonations";
 import ReceivedDonations from "../page/ReceivedDonations";
 
+import DonationDetail from "../page/DonationDetail";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyDonations></MyDonations>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/donation-detail",
+        element: (
+          <PrivateRoute>
+            <DonationDetail></DonationDetail>
           </PrivateRoute>
         ),
       },
