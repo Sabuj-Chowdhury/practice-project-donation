@@ -32,10 +32,26 @@ async function run() {
     });
 
     // ***********************GET************************
+    // route for donations data for that logged in user
     app.get("/my-donations/:email", async (req, res) => {
       const email = req.params.email;
       const query = { "donner.email": email };
       const result = await donationCollections.find(query).toArray();
+      res.send(result);
+    });
+
+    // Route to get the latest 6 donations
+    app.get("/latest-donations", async (req, res) => {
+      const query = {};
+      const sort = {
+        createdAt: -1,
+      };
+      const result = await donationCollections
+        .find(query)
+        .sort(sort)
+        .limit(6)
+        .toArray();
+
       res.send(result);
     });
 
