@@ -55,6 +55,15 @@ async function run() {
       res.send(result);
     });
 
+    // Route to get all available donations and search
+    app.get("/available-donations", async (req, res) => {
+      let query = {};
+
+      const result = await donationCollections.find(query).toArray();
+
+      res.send(result);
+    });
+
     // ********************DELETE***************************
 
     // route for delete a donation data from DB
