@@ -20,6 +20,17 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    const db = client.db("OpenEduDB");
+    const donationCollections = db.collection("donations");
+
+    // **********************POST************************
+    //route for adding the donation
+    app.post("/add-donation", async (req, res) => {
+      const data = req.body;
+      const result = await donationCollections.insertOne(data);
+      res.send(result);
+    });
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
