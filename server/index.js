@@ -55,7 +55,7 @@ async function run() {
       res.send(result);
     });
 
-    // Route to get all available donations and search
+    // Route to get all donations
     app.get("/available-donations", async (req, res) => {
       let query = {};
 
