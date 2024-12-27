@@ -34,6 +34,7 @@ const AddDonations = () => {
     try {
       // Post request to add car
       await axios.post(`${import.meta.env.VITE_URL}/add-donation`, newDonation);
+
       // Reset form
       handleReset();
       // Show toast and navigate
