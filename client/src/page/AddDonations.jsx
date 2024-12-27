@@ -29,6 +29,7 @@ const AddDonations = () => {
     };
     newDonation.status = "available"; //default
     newDonation.createdAt = new Date();
+    newDonation.count = 0;
     console.log(newDonation);
 
     try {
