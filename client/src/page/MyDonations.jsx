@@ -135,13 +135,6 @@ const MyDonations = () => {
                     >
                       <FaTrash className="w-5 h-5" />
                     </button>
-                    {/* update button */}
-                    <button
-                      onClick={() => console.log(donation._id)}
-                      className="text-blue-500 hover:text-blue-600"
-                    >
-                      <FaEdit className="w-5 h-5" />
-                    </button>
                   </td>
                 </tr>
               ))}
