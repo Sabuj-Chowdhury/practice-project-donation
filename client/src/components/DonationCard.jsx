@@ -2,7 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
 const DonationCard = ({ donation }) => {
-  const { status, quantity, location, itemName, imageUrl, createdAt } =
+  const { status, quantity, location, itemName, imageUrl, createdAt, _id } =
     donation || {};
 
   const formattedDate = formatDistanceToNow(new Date(createdAt), {
@@ -38,7 +38,7 @@ const DonationCard = ({ donation }) => {
         </div>
         <p className="text-gray-500 text-xs mb-4">Added {formattedDate}</p>
         <Link
-          to={status === "available" ? "/donation-detail" : "#"}
+          to={status === "available" ? `/donation-detail/${_id}` : "#"}
           className={`block text-center py-2 px-4 rounded-lg text-white font-medium shadow-md transition duration-300 ${
             status === "available"
               ? "bg-green-600 hover:bg-green-700"

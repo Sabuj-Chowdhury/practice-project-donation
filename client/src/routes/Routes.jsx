@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/donation-detail",
+        path: "/donation-detail/:id",
         element: (
           <PrivateRoute>
             <DonationDetail></DonationDetail>
