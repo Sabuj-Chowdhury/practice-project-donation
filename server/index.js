@@ -87,6 +87,15 @@ async function run() {
       res.send(result);
     });
 
+    // Route to get all items received by that logged in user
+    app.get("/my-items/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { receiver: email };
+
+      const result = await receivedCollections.find(query).toArray();
+      res.send(result);
+    });
+
     // ********************DELETE***************************
 
     // route for delete a donation data from DB
