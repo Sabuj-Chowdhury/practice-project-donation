@@ -22,12 +22,27 @@ async function run() {
   try {
     const db = client.db("OpenEduDB");
     const donationCollections = db.collection("donations");
+    const receivedCollections = db.collection("items");
 
     // **********************POST************************
     //route for adding the donation
     app.post("/add-donation", async (req, res) => {
       const data = req.body;
       const result = await donationCollections.insertOne(data);
+      res.send(result);
+    });
+
+    // Route to store donation collect details and update booking status on donationCollections
+    app.post("/collect-donation", async (req, res) => {
+      const data = req.body;
+      const result = await receivedCollections.insertOne(data);
+
+      // change the status in donationCollections
+      const filter = { _id: new ObjectId(data.donation_id) };
+      const update = {
+        $set: { status: "unavailable" },
+      };
+      const updateStatus = await donationCollections.updateOne(filter, update);
       res.send(result);
     });
 
@@ -61,6 +76,14 @@ async function run() {
 
       const result = await donationCollections.find(query).toArray();
 
+      res.send(result);
+    });
+
+    // Route for single donation data from DB by "_id"
+    app.get("/donation-detail/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await donationCollections.findOne(query);
       res.send(result);
     });
 
